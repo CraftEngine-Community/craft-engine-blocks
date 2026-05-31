@@ -58,8 +58,8 @@ bukkit {
     name = "CraftEngineBlocks"
     apiVersion = "1.20"
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
-    author = "jhqwqmc"
-    website = "https://github.com/jhqwqmc"
+    author = "CraftEngine Community"
+    website = "https://github.com/CraftEngine-Community"
     depend = listOf("CraftEngine")
     foliaSupported = true
 }
