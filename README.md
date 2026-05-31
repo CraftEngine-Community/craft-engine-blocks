@@ -12,6 +12,9 @@
 - [X] Placer Block
 - [X] Chair Block (Block Entity)
 
+## Extended Item Behaviors
+- [X] Place Block
+
 ## Extended Event Functions
 - [X] Apply Item Data Function
 - [X] Set Item Tooltip Description/Lore Function
@@ -59,6 +62,9 @@ items:
 - [X] 镐方块
 - [X] 放置方块
 - [X] 座椅方块 (方块实体)
+
+## 拓展物品行为
+- [X] 放置方块
 
 ## 拓展事件函数
 - [X] 应用物品数据函数

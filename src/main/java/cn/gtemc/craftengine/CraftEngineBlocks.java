@@ -10,6 +10,7 @@ import cn.gtemc.craftengine.entity.seat.SeatManager;
 import cn.gtemc.craftengine.injector.PlaceBlockBlockPlaceContextGenerator;
 import cn.gtemc.craftengine.item.ItemManager;
 import cn.gtemc.craftengine.item.ItemProcessors;
+import cn.gtemc.craftengine.item.behavior.ItemBehaviors;
 import cn.gtemc.craftengine.item.settings.ItemSettings;
 import cn.gtemc.craftengine.plugin.context.event.EventFunctions;
 import cn.gtemc.craftengine.scheduler.JavaScheduler;
@@ -56,6 +57,7 @@ public final class CraftEngineBlocks extends JavaPlugin {
         initDependencyManager();
         PlaceBlockBlockPlaceContextGenerator.init();
         BlockBehaviors.register();
+        ItemBehaviors.register();
         EventFunctions.register();
         ItemSettings.register();
         ItemProcessors.register();
