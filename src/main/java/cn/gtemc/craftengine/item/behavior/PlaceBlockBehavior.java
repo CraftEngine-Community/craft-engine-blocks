@@ -6,6 +6,7 @@ import net.momirealms.craftengine.bukkit.util.EventUtils;
 import net.momirealms.craftengine.bukkit.util.ItemStackUtils;
 import net.momirealms.craftengine.bukkit.world.BukkitExistingBlock;
 import net.momirealms.craftengine.core.block.BlockStateWrapper;
+import net.momirealms.craftengine.core.block.ImmutableBlockState;
 import net.momirealms.craftengine.core.block.UpdateFlags;
 import net.momirealms.craftengine.core.entity.player.InteractionHand;
 import net.momirealms.craftengine.core.entity.player.InteractionResult;
@@ -126,15 +127,14 @@ public final class PlaceBlockBehavior extends ItemBehavior {
                             .withParameter(DirectContextParameters.HAND, context.getHand())
                             .withParameter(DirectContextParameters.ITEM_IN_HAND, context.getItem())
             );
-            custom.getImmutableBlockState().orElseThrow().owner().value()
-                    .execute(functionContext, EventTrigger.PLACE);
+            ImmutableBlockState immutableBlockState = custom.getImmutableBlockState().orElseThrow();
+            immutableBlockState.owner().value().execute(functionContext, EventTrigger.PLACE);
             if (dummy.isCancelled()) {
                 previousState.update(true, false);
                 return InteractionResult.FAIL;
             }
-        }
-
-        if (this.placeSound != null) {
+            level.playBlockSound(position, immutableBlockState.settings().sounds().placeSound());
+        } else if (this.placeSound != null) {
             level.playBlockSound(position, this.placeSound);
         }
         world.sendGameEvent(bukkitPlayer, GameEvent.BLOCK_PLACE, new Vector(pos.x(), pos.y(), pos.z()));
