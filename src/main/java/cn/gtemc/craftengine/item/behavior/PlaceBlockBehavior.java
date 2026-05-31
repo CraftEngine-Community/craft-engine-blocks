@@ -149,7 +149,7 @@ public final class PlaceBlockBehavior extends ItemBehavior {
             ConfigSection soundSection = section.getSection("sounds");
             return new PlaceBlockBehavior(
                     section.getNonEmptyString(BLOCK_STATES),
-                    soundSection == null ? null : section.getValue("place", v -> SoundData.fromConfig(v, SoundData.SoundValue.FIXED_1, SoundData.SoundValue.RANGED_0_9_1))
+                    soundSection == null ? null : soundSection.getValue("place", v -> SoundData.fromConfig(v, SoundData.SoundValue.FIXED_1, SoundData.SoundValue.RANGED_0_9_1))
             );
         }
     }
