@@ -1,6 +1,8 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
 import org.gradle.api.internal.DynamicObjectAware
 
+val projectProperties = (rootProject as DynamicObjectAware).asDynamicObject.properties
+
 plugins {
     id("java")
     id("com.gradleup.shadow") version "9.4.1"
@@ -49,13 +51,13 @@ tasks.withType<JavaCompile> {
 tasks.processResources {
     filteringCharset = "UTF-8"
     filesMatching(arrayListOf("craft-engine-blocks.properties")) {
-        expand((rootProject as DynamicObjectAware).asDynamicObject.properties)
+        expand(projectProperties)
     }
 }
 
 bukkit {
     main = "cn.gtemc.craftengine.CraftEngineBlocks"
-    version = rootProject.findProperty("project_version") as String
+    version = projectProperties["project_version"] as String
     name = "CraftEngineBlocks"
     apiVersion = "1.20"
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
@@ -71,7 +73,7 @@ artifacts {
 
 tasks {
     shadowJar {
-        archiveFileName = "${rootProject.name}-${rootProject.findProject("project_version")}.jar"
+        archiveFileName = "${rootProject.name}-${projectProperties["project_version"]}.jar"
         destinationDirectory.set(file("$rootDir/target"))
         relocate("net.bytebuddy", "cn.gtemc.craftengine.libraries.bytebuddy")
         relocate("net.momirealms.sparrow.nbt", "net.momirealms.craftengine.libraries.nbt")
