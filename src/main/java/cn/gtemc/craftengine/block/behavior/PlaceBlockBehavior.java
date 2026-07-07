@@ -25,6 +25,7 @@ import net.momirealms.craftengine.proxy.minecraft.core.BlockPosProxy;
 import net.momirealms.craftengine.proxy.minecraft.world.*;
 import net.momirealms.craftengine.proxy.minecraft.world.entity.EntityProxy;
 import net.momirealms.craftengine.proxy.minecraft.world.entity.EntityTypeProxy;
+import net.momirealms.craftengine.proxy.minecraft.world.entity.EntityTypesProxy;
 import net.momirealms.craftengine.proxy.minecraft.world.entity.item.ItemEntityProxy;
 import net.momirealms.craftengine.proxy.minecraft.world.item.BlockItemProxy;
 import net.momirealms.craftengine.proxy.minecraft.world.item.ItemStackProxy;
@@ -206,7 +207,7 @@ public class PlaceBlockBehavior extends FacingTriggerableBlockBehavior {
     }
 
     private static void spawnItemEntity(Object level, Object targetPos, Object stack) {
-        double itemHeightOffset = EntityTypeProxy.INSTANCE.getHeight(EntityTypeProxy.ITEM) / 2.0;
+        double itemHeightOffset = EntityTypeProxy.INSTANCE.getHeight(EntityTypesProxy.ITEM) / 2.0;
         double spawnX = BlockPosProxy.INSTANCE.getX(targetPos) + 0.5;
         double spawnY = BlockPosProxy.INSTANCE.getY(targetPos) + 0.5 - itemHeightOffset;
         double spawnZ = BlockPosProxy.INSTANCE.getZ(targetPos) + 0.5;

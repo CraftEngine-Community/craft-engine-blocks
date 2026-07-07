@@ -1,4 +1,5 @@
 import net.minecrell.pluginyml.bukkit.BukkitPluginDescription
+import org.gradle.api.internal.DynamicObjectAware
 
 plugins {
     id("java")
@@ -16,19 +17,19 @@ repositories {
 
 dependencies {
     implementation(project(":legacy"))
-    compileOnly("io.papermc.paper:paper-api:${rootProject.properties["paper_version"]}-R0.1-SNAPSHOT")
-    compileOnly("net.momirealms:craft-engine-core:${rootProject.properties["craftengine_version"]}")
-    compileOnly("net.momirealms:craft-engine-bukkit:${rootProject.properties["craftengine_version"]}")
-    compileOnly("net.momirealms:craft-engine-bukkit-proxy:${rootProject.properties["craftengine_version"]}")
-    compileOnly("net.momirealms:craft-engine-adventure:${rootProject.properties["craftengine_version"]}")
-    compileOnly("net.momirealms:craft-engine-nms-helper:${rootProject.properties["nms_helper_version"]}")
-    compileOnly("net.momirealms:sparrow-nbt:${rootProject.properties["sparrow_nbt_version"]}")
-    compileOnly("net.momirealms:sparrow-nbt-adventure:${rootProject.properties["sparrow_nbt_version"]}")
-    compileOnly("net.momirealms:sparrow-nbt-codec:${rootProject.properties["sparrow_nbt_version"]}")
-    compileOnly("net.momirealms:sparrow-nbt-legacy-codec:${rootProject.properties["sparrow_nbt_version"]}")
-    compileOnly("it.unimi.dsi:fastutil:${rootProject.properties["fastutil_version"]}")
-    compileOnly("com.google.code.gson:gson:${rootProject.properties["gson_version"]}")
-    compileOnly("net.bytebuddy:byte-buddy:${rootProject.properties["byte_buddy_version"]}")
+    compileOnly("io.papermc.paper:paper-api:${rootProject.findProperty("paper_version")}-R0.1-SNAPSHOT")
+    compileOnly("net.momirealms:craft-engine-core:${rootProject.findProperty("craftengine_version")}")
+    compileOnly("net.momirealms:craft-engine-bukkit:${rootProject.findProperty("craftengine_version")}")
+    compileOnly("net.momirealms:craft-engine-bukkit-proxy:${rootProject.findProperty("craftengine_version")}")
+    compileOnly("net.momirealms:craft-engine-adventure:${rootProject.findProperty("craftengine_version")}")
+    compileOnly("net.momirealms:craft-engine-nms-helper:${rootProject.findProperty("nms_helper_version")}")
+    compileOnly("net.momirealms:sparrow-nbt:${rootProject.findProperty("sparrow_nbt_version")}")
+    compileOnly("net.momirealms:sparrow-nbt-adventure:${rootProject.findProperty("sparrow_nbt_version")}")
+    compileOnly("net.momirealms:sparrow-nbt-codec:${rootProject.findProperty("sparrow_nbt_version")}")
+    compileOnly("net.momirealms:sparrow-nbt-legacy-codec:${rootProject.findProperty("sparrow_nbt_version")}")
+    compileOnly("it.unimi.dsi:fastutil:${rootProject.findProperty("fastutil_version")}")
+    compileOnly("com.google.code.gson:gson:${rootProject.findProperty("gson_version")}")
+    compileOnly("net.bytebuddy:byte-buddy:${rootProject.findProperty("byte_buddy_version")}")
 }
 
 java {
@@ -48,13 +49,13 @@ tasks.withType<JavaCompile> {
 tasks.processResources {
     filteringCharset = "UTF-8"
     filesMatching(arrayListOf("craft-engine-blocks.properties")) {
-        expand(rootProject.properties)
+        expand((rootProject as DynamicObjectAware).asDynamicObject.properties)
     }
 }
 
 bukkit {
     main = "cn.gtemc.craftengine.CraftEngineBlocks"
-    version = rootProject.properties["project_version"] as String
+    version = rootProject.findProperty("project_version") as String
     name = "CraftEngineBlocks"
     apiVersion = "1.20"
     load = BukkitPluginDescription.PluginLoadOrder.STARTUP
@@ -70,7 +71,7 @@ artifacts {
 
 tasks {
     shadowJar {
-        archiveFileName = "${rootProject.name}-${rootProject.properties["project_version"]}.jar"
+        archiveFileName = "${rootProject.name}-${rootProject.findProject("project_version")}.jar"
         destinationDirectory.set(file("$rootDir/target"))
         relocate("net.bytebuddy", "cn.gtemc.craftengine.libraries.bytebuddy")
         relocate("net.momirealms.sparrow.nbt", "net.momirealms.craftengine.libraries.nbt")

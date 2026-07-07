@@ -31,7 +31,7 @@ public class JavaScheduler {
         this.scheduler.setRemoveOnCancelPolicy(true);
         this.scheduler.setExecuteExistingDelayedTasksAfterShutdownPolicy(false);
         this.worker = new ForkJoinPool(PARALLELISM, new WorkerThreadFactory(), new ExceptionHandler(), false);
-        if (VersionHelper.isFolia) {
+        if (VersionHelper.hasFoliaPatch) {
             this.sync = new FoliaExecutor(plugin);
         } else {
             this.sync = new BukkitExecutor(plugin);
