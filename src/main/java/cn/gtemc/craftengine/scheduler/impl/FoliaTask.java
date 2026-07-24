@@ -3,7 +3,7 @@ package cn.gtemc.craftengine.scheduler.impl;
 import cn.gtemc.craftengine.scheduler.SchedulerTask;
 import io.papermc.paper.threadedregions.scheduler.ScheduledTask;
 
-public class FoliaTask implements SchedulerTask {
+public final class FoliaTask implements SchedulerTask {
     private final ScheduledTask task;
 
     public FoliaTask(ScheduledTask task) {

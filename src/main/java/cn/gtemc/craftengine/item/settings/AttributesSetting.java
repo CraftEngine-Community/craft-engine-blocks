@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.function.Predicate;
 
-public class AttributesSetting implements ItemSettingsModifier {
+public final class AttributesSetting implements ItemSettingsModifier {
     public static final CustomItemSettingType<List<AttributeData>> ATTRIBUTES = CustomItemSettingType.simple();
     public static final ItemSettingsModifierFactory<AttributesSetting> FACTORY = new Factory();
     private final List<AttributeData> data;

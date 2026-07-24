@@ -6,7 +6,7 @@ import java.util.Set;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class DependencyRegistry {
+public final class DependencyRegistry {
     private static final Set<String> DO_NOT_AUTO_LOAD = Stream.of(
             Dependencies.ASM, Dependencies.ASM_COMMONS, Dependencies.JAR_RELOCATOR
     ).map(Dependency::id).collect(Collectors.toSet());

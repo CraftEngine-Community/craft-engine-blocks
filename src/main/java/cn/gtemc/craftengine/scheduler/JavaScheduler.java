@@ -14,7 +14,7 @@ import java.util.function.Predicate;
 import java.util.logging.Level;
 import java.util.stream.Collectors;
 
-public class JavaScheduler {
+public final class JavaScheduler {
     private static final int PARALLELISM = 16;
     private final CraftEngineBlocks plugin;
     private final ScheduledThreadPoolExecutor scheduler;

@@ -1,6 +1,6 @@
 package cn.gtemc.craftengine.dependency;
 
-public class DependencyDownloadException extends Exception {
+public final class DependencyDownloadException extends Exception {
     public DependencyDownloadException() {
     }
 

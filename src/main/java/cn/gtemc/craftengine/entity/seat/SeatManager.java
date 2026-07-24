@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 
 import static cn.gtemc.craftengine.block.entity.SeatBlockEntityController.SEAT_KEY;
 
-public class SeatManager implements Manageable, Listener {
+public final class SeatManager implements Manageable, Listener {
     private final CraftEngineBlocks plugin;
     private final Listener dismountListener;
 

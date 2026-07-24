@@ -18,6 +18,7 @@
 ## Extended Event Functions
 - [X] Apply Item Data Function
 - [X] Set Item Tooltip Description/Lore Function
+- [X] Weighted Functions
 
 ## Extended Item Settings
 -[X] Dynamic Attributes
@@ -69,6 +70,7 @@ items:
 ## 拓展事件函数
 - [X] 应用物品数据函数
 - [X] 设置物品提示框中的描述信息函数
+- [X] 带权重的函数
 
 ## 拓展物品设置
 - [X] 动态属性

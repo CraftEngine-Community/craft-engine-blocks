@@ -7,7 +7,7 @@ import java.net.MalformedURLException;
 import java.net.URLClassLoader;
 import java.nio.file.Path;
 
-public class ReflectionClassPathAppender implements ClassPathAppender {
+public final class ReflectionClassPathAppender implements ClassPathAppender {
     private final URLClassLoaderAccess classLoaderAccess;
 
     public ReflectionClassPathAppender(ClassLoader classLoader) {

@@ -16,7 +16,7 @@ import net.momirealms.craftengine.core.world.CEWorld;
 import net.momirealms.craftengine.core.world.context.UseOnContext;
 import org.joml.Vector3f;
 
-public class SeatBlockBehavior extends BukkitBlockBehavior implements EntityBlock {
+public final class SeatBlockBehavior extends BukkitBlockBehavior implements EntityBlock {
     public static final BlockBehaviorFactory<SeatBlockBehavior> FACTORY = new Factory();
     public final Vector3f offset;
     public final float yaw;

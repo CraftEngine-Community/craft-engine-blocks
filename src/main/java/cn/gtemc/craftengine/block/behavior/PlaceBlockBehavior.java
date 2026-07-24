@@ -50,7 +50,7 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
-public class PlaceBlockBehavior extends FacingTriggerableBlockBehavior {
+public final class PlaceBlockBehavior extends FacingTriggerableBlockBehavior {
     public static final BlockBehaviorFactory<PlaceBlockBehavior> FACTORY = new Factory();
 
     public PlaceBlockBehavior(BlockDefinition blockDefinition, Property<Direction> facing, Property<Boolean> triggered, Set<Key> blocks, boolean whitelistMode) {

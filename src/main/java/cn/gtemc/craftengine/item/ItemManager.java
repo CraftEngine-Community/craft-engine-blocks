@@ -25,7 +25,7 @@ import org.bukkit.inventory.ItemStack;
 
 import java.util.*;
 
-public class ItemManager implements Manageable, Listener {
+public final class ItemManager implements Manageable, Listener {
     private final CraftEngineBlocks plugin;
 
     public ItemManager(CraftEngineBlocks plugin) {

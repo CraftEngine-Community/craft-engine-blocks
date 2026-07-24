@@ -11,7 +11,7 @@ import net.momirealms.craftengine.core.entity.player.InteractionResult;
 import net.momirealms.craftengine.core.plugin.config.ConfigSection;
 import net.momirealms.craftengine.core.world.context.UseOnContext;
 
-public class AdjustableRedstoneBlockBehavior extends BukkitBlockBehavior {
+public final class AdjustableRedstoneBlockBehavior extends BukkitBlockBehavior {
     public static final BlockBehaviorFactory<AdjustableRedstoneBlockBehavior> FACTORY = new Factory();
     private final IntegerProperty powerProperty;
 

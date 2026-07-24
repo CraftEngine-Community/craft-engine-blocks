@@ -19,7 +19,7 @@ import java.util.concurrent.CountDownLatch;
 import java.util.logging.Level;
 import java.util.stream.Stream;
 
-public class DependencyManagerImpl implements DependencyManager {
+public final class DependencyManagerImpl implements DependencyManager {
     private final Map<Dependency, Path> loaded = Collections.synchronizedMap(new HashMap<>());
     private final Map<Set<Dependency>, IsolatedClassLoader> loaders = new HashMap<>();
     private final Path cacheDirectory;

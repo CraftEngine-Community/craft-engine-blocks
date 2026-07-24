@@ -5,7 +5,7 @@ import cn.gtemc.craftengine.dependency.relocation.Relocation;
 import java.util.Collections;
 import java.util.List;
 
-public class Dependencies {
+public final class Dependencies {
 
     public static final Dependency ASM = new Dependency(
             "asm",

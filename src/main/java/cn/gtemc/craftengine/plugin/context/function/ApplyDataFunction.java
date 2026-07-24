@@ -14,7 +14,7 @@ import net.momirealms.craftengine.core.plugin.context.parameter.DirectContextPar
 import java.util.ArrayList;
 import java.util.List;
 
-public class ApplyDataFunction<CTX extends Context> extends AbstractConditionalFunction<CTX> {
+public final class ApplyDataFunction<CTX extends Context> extends AbstractConditionalFunction<CTX> {
     private final ItemProcessor[] processors;
 
     public ApplyDataFunction(List<Condition<CTX>> predicates, ItemProcessor[] processors) {

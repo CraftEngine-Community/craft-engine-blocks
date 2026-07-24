@@ -2,7 +2,7 @@ package cn.gtemc.craftengine.scheduler.impl;
 
 import cn.gtemc.craftengine.scheduler.SchedulerTask;
 
-public class BukkitTask implements SchedulerTask {
+public final class BukkitTask implements SchedulerTask {
 
     private final org.bukkit.scheduler.BukkitTask bukkitTask;
 

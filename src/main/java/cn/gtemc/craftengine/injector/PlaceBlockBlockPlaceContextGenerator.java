@@ -22,7 +22,7 @@ import net.momirealms.craftengine.proxy.minecraft.world.phys.BlockHitResultProxy
 
 import java.lang.reflect.Array;
 
-public class PlaceBlockBlockPlaceContextGenerator {
+public final class PlaceBlockBlockPlaceContextGenerator {
     private static SConstructor5 constructor$PlaceBlockBlockPlaceContext;
 
     public static void init() {

@@ -15,7 +15,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
-public class RelocationHandler {
+public final class RelocationHandler {
     public static final Set<Dependency> DEPENDENCIES = Set.of(Dependencies.ASM, Dependencies.ASM_COMMONS, Dependencies.JAR_RELOCATOR);
     private static final String JAR_RELOCATOR_CLASS = "me.lucko.jarrelocator.JarRelocator";
     private static final String JAR_RELOCATOR_RUN_METHOD = "run";

@@ -7,7 +7,7 @@ import org.bukkit.Bukkit;
 import org.bukkit.World;
 import org.jetbrains.annotations.NotNull;
 
-public class BukkitExecutor implements RegionExecutor<World> {
+public final class BukkitExecutor implements RegionExecutor<World> {
     private final CraftEngineBlocks plugin;
 
     public BukkitExecutor(CraftEngineBlocks plugin) {

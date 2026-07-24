@@ -3,7 +3,7 @@ package cn.gtemc.craftengine.dependency.classloader;
 import java.net.URL;
 import java.net.URLClassLoader;
 
-public class IsolatedClassLoader extends URLClassLoader {
+public final class IsolatedClassLoader extends URLClassLoader {
     static {
         ClassLoader.registerAsParallelCapable();
     }

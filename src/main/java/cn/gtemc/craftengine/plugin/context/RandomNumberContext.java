@@ -13,7 +13,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 import java.util.Optional;
 
-public class RandomNumberContext extends PlayerOptionalContext {
+public final class RandomNumberContext extends PlayerOptionalContext {
     public static final String RANDOM_NUMBER_KEY = "gtemc:random_number";
     private final Item item;
 

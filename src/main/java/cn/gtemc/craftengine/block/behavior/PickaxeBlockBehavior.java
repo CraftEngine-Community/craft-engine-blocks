@@ -19,7 +19,7 @@ import net.momirealms.craftengine.proxy.minecraft.world.ticks.TickPriorityProxy;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-public class PickaxeBlockBehavior extends FacingTriggerableBlockBehavior {
+public final class PickaxeBlockBehavior extends FacingTriggerableBlockBehavior {
     public static final BlockBehaviorFactory<PickaxeBlockBehavior> FACTORY = new Factory();
 
     public PickaxeBlockBehavior(BlockDefinition blockDefinition, Property<Direction> facing, Property<Boolean> triggered, Set<Key> blocks, boolean whitelistMode) {

@@ -7,7 +7,7 @@ import cn.gtemc.craftengine.util.RegistryUtils;
 import net.momirealms.craftengine.core.item.processor.ItemProcessorType;
 import net.momirealms.craftengine.core.util.Key;
 
-public class ItemProcessors {
+public final class ItemProcessors {
     private ItemProcessors() {}
 
     public static final ItemProcessorType<RandomNumberProcessor> RANDOM_NUMBER = RegistryUtils.registerItemProcessorType(Key.of("gtemc:random_number"), RandomNumberProcessor.FACTORY);

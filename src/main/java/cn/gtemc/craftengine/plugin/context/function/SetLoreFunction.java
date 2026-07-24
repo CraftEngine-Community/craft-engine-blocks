@@ -19,7 +19,7 @@ import java.util.List;
 import java.util.Optional;
 
 @SuppressWarnings("OptionalUsedAsFieldOrParameterType")
-public class SetLoreFunction<CTX extends Context> extends AbstractConditionalFunction<CTX> {
+public final class SetLoreFunction<CTX extends Context> extends AbstractConditionalFunction<CTX> {
     private final PlayerSelector<CTX> selector;
     private final Optional<InteractionHand> hand;
     private final ItemProcessor itemProcessor;

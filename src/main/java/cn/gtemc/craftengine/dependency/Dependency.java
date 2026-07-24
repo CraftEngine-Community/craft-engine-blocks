@@ -9,7 +9,7 @@ import java.util.Locale;
 import java.util.Objects;
 import java.util.function.Predicate;
 
-public class Dependency {
+public final class Dependency {
     private final String id;
     private final String groupId;
     private final String rawArtifactId;
