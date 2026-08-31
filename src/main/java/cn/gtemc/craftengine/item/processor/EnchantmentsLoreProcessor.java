@@ -26,7 +26,9 @@ public record EnchantmentsLoreProcessor(Map<Key, String> descriptions) implement
     private static final Component SPLIT_COMPONENT = Component.text(" ");
 
     @Override
-    public Item apply(Item item, ItemBuildContext context) {
+    public void apply(ItemBuildContext context) {
+        Item item = context.item();
+        if (item == null) return;
         List<Enchantment> enchantments = item.enchantments().orElse(List.of());
         List<Component> lore = new ObjectArrayList<>();
         for (Enchantment enchantment : enchantments) {
@@ -38,7 +40,7 @@ public record EnchantmentsLoreProcessor(Map<Key, String> descriptions) implement
                         .replace("%id_namespace%", id.namespace())
                         .replace("%id_value%", id.value())
                         .replace("%level%", String.valueOf(level));
-                lore.addAll(AdventureHelper.splitLines(AdventureHelper.miniMessage().deserialize(description, context.tagResolvers())));
+                lore.addAll(AdventureHelper.splitLines(AdventureHelper.deserialize(description, context)));
                 continue;
             }
             String nameKey = "enchantment." + id.namespace() + "." + id.value();
@@ -50,7 +52,6 @@ public record EnchantmentsLoreProcessor(Map<Key, String> descriptions) implement
         }
         lore.addAll(item.loreComponent().orElse(List.of()));
         item.loreComponent(lore);
-        return item;
     }
 
     @Override

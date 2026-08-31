@@ -10,7 +10,6 @@ import net.momirealms.craftengine.libraries.nbt.CompoundTag;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.Map;
 import java.util.Optional;
 
 public final class RandomNumberContext extends PlayerOptionalContext {
@@ -24,7 +23,7 @@ public final class RandomNumberContext extends PlayerOptionalContext {
 
     @NotNull
     public static RandomNumberContext of(@Nullable Player player, @NotNull Item item) {
-        return new RandomNumberContext(player, item, ContextHolder.mutable(Map.of(DirectContextParameters.PLAYER, () -> player)));
+        return new RandomNumberContext(player, item, ContextHolder.builder(DirectContextParameters.PLAYER, player).build());
     }
 
     @SuppressWarnings("unchecked")

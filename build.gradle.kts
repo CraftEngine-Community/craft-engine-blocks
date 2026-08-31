@@ -23,12 +23,7 @@ dependencies {
     compileOnly("net.momirealms:craft-engine-core:${rootProject.findProperty("craftengine_version")}")
     compileOnly("net.momirealms:craft-engine-bukkit:${rootProject.findProperty("craftengine_version")}")
     compileOnly("net.momirealms:craft-engine-bukkit-proxy:${rootProject.findProperty("craftengine_version")}")
-    compileOnly("net.momirealms:craft-engine-adventure:${rootProject.findProperty("craftengine_version")}")
     compileOnly("net.momirealms:craft-engine-nms-helper:${rootProject.findProperty("nms_helper_version")}")
-    compileOnly("net.momirealms:sparrow-nbt:${rootProject.findProperty("sparrow_nbt_version")}")
-    compileOnly("net.momirealms:sparrow-nbt-adventure:${rootProject.findProperty("sparrow_nbt_version")}")
-    compileOnly("net.momirealms:sparrow-nbt-codec:${rootProject.findProperty("sparrow_nbt_version")}")
-    compileOnly("net.momirealms:sparrow-nbt-legacy-codec:${rootProject.findProperty("sparrow_nbt_version")}")
     compileOnly("it.unimi.dsi:fastutil:${rootProject.findProperty("fastutil_version")}")
     compileOnly("com.google.code.gson:gson:${rootProject.findProperty("gson_version")}")
     compileOnly("net.bytebuddy:byte-buddy:${rootProject.findProperty("byte_buddy_version")}")
@@ -76,6 +71,5 @@ tasks {
         archiveFileName = "${rootProject.name}-${projectProperties["project_version"]}.jar"
         destinationDirectory.set(file("$rootDir/target"))
         relocate("net.bytebuddy", "cn.gtemc.craftengine.libraries.bytebuddy")
-        relocate("net.momirealms.sparrow.nbt", "net.momirealms.craftengine.libraries.nbt")
     }
 }

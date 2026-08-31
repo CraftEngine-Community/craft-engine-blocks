@@ -17,9 +17,11 @@ import net.momirealms.craftengine.core.item.behavior.ItemBehaviorFactory;
 import net.momirealms.craftengine.core.pack.Pack;
 import net.momirealms.craftengine.core.plugin.CraftEngine;
 import net.momirealms.craftengine.core.plugin.config.ConfigSection;
+import net.momirealms.craftengine.core.plugin.context.Context;
 import net.momirealms.craftengine.core.plugin.context.ContextHolder;
 import net.momirealms.craftengine.core.plugin.context.EventTrigger;
 import net.momirealms.craftengine.core.plugin.context.PlayerOptionalContext;
+import net.momirealms.craftengine.core.plugin.context.function.Function;
 import net.momirealms.craftengine.core.plugin.context.parameter.DirectContextParameters;
 import net.momirealms.craftengine.core.sound.SoundData;
 import net.momirealms.craftengine.core.util.Cancellable;
@@ -43,6 +45,7 @@ import org.bukkit.util.Vector;
 import org.jetbrains.annotations.Nullable;
 
 import java.nio.file.Path;
+import java.util.List;
 
 public final class PlaceBlockBehavior extends ItemBehavior {
     public static final ItemBehaviorFactory<PlaceBlockBehavior> FACTORY = new Factory();
@@ -51,7 +54,7 @@ public final class PlaceBlockBehavior extends ItemBehavior {
     private final SoundData placeSound;
 
     private PlaceBlockBehavior(String blockState, SoundData placeSound) {
-        this.blockStateWrapper = LazyReference.lazyReference(() -> CraftEngine.instance().blockManager().createBlockState(blockState));
+        this.blockStateWrapper = LazyReference.untilNotNull(() -> CraftEngine.instance().blockManager().createBlockState(blockState));
         this.blockState = blockState;
         this.placeSound = placeSound;
     }
@@ -118,20 +121,24 @@ public final class PlaceBlockBehavior extends ItemBehavior {
 
         WorldPosition position = new WorldPosition(context.getLevel(), pos.x() + 0.5, pos.y() + 0.5, pos.z() + 0.5);
         if (state instanceof BukkitCustomBlockStateWrapper custom) {
-            Cancellable dummy = Cancellable.dummy();
-            PlayerOptionalContext functionContext = PlayerOptionalContext.of(player,
-                    ContextHolder.builder()
-                            .withParameter(DirectContextParameters.BLOCK, new BukkitExistingBlock(bukkitBlock))
-                            .withParameter(DirectContextParameters.POSITION, position)
-                            .withParameter(DirectContextParameters.EVENT, dummy)
-                            .withParameter(DirectContextParameters.HAND, context.getHand())
-                            .withParameter(DirectContextParameters.ITEM_IN_HAND, context.getItem())
-            );
             ImmutableBlockState immutableBlockState = custom.getImmutableBlockState().orElseThrow();
-            immutableBlockState.owner().value().execute(functionContext, EventTrigger.PLACE);
-            if (dummy.isCancelled()) {
-                previousState.update(true, false);
-                return InteractionResult.FAIL;
+            List<Function<Context>> functions = immutableBlockState.owner().value().eventFunctions(EventTrigger.PLACE);
+            if (!functions.isEmpty()) {
+                Cancellable dummy = Cancellable.dummy();
+                Function.execute(PlayerOptionalContext.of(player,
+                        ContextHolder.builder()
+                                .withOptionalParameter(DirectContextParameters.PLAYER, player)
+                                .withParameter(DirectContextParameters.BLOCK, new BukkitExistingBlock(bukkitBlock))
+                                .withParameter(DirectContextParameters.POSITION, position)
+                                .withParameter(DirectContextParameters.EVENT, dummy)
+                                .withParameter(DirectContextParameters.HAND, context.getHand())
+                                .withParameter(DirectContextParameters.ITEM_IN_HAND, context.getItem())
+                                .build()
+                ), functions);
+                if (dummy.isCancelled()) {
+                    previousState.update(true, false);
+                    return InteractionResult.FAIL;
+                }
             }
             level.playBlockSound(position, immutableBlockState.settings().sounds().placeSound());
         } else if (this.placeSound != null) {

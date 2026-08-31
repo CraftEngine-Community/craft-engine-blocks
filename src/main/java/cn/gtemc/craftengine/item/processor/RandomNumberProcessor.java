@@ -22,13 +22,14 @@ public final class RandomNumberProcessor implements SimpleNetworkItemProcessor {
     }
 
     @Override
-    public Item apply(Item item, ItemBuildContext context) {
+    public void apply(ItemBuildContext context) {
+        Item item = context.item();
+        if (item == null) return;
         CompoundTag randomNumberData = item.getSparrowTag(RandomNumberContext.RANDOM_NUMBER_KEY) instanceof CompoundTag tag ? tag : new CompoundTag();
         for (Map.Entry<String, NumberProvider> entry : this.numberProviders.entrySet()) {
             randomNumberData.putDouble(entry.getKey(), entry.getValue().getDouble(context));
         }
         item.setSparrowTag(randomNumberData, RandomNumberContext.RANDOM_NUMBER_KEY);
-        return item;
     }
 
     private static class Factory implements ItemProcessorFactory<RandomNumberProcessor> {

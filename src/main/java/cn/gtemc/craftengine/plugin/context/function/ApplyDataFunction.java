@@ -26,8 +26,10 @@ public final class ApplyDataFunction<CTX extends Context> extends AbstractCondit
     protected void runInternal(CTX ctx) {
         Player player = ctx.getOptionalParameter(DirectContextParameters.PLAYER).orElse(null);
         ctx.getOptionalParameter(DirectContextParameters.ITEM_IN_HAND).ifPresent(item -> {
+            ItemBuildContext context = ItemBuildContext.of(player);
+            context.setItem(item);
             for (ItemProcessor processor : this.processors) {
-                processor.apply(item, ItemBuildContext.of(player));
+                processor.apply(context);
             }
         });
     }

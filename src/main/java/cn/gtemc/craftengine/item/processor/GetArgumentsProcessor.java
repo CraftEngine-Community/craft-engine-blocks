@@ -3,7 +3,7 @@ package cn.gtemc.craftengine.item.processor;
 import cn.gtemc.craftengine.item.settings.AttributesSetting;
 import cn.gtemc.craftengine.plugin.context.RandomNumberContext;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
-import net.momirealms.craftengine.core.attribute.AttributeModifier;
+import net.momirealms.craftengine.core.attribute.vanilla.VanillaAttributeModifier;
 import net.momirealms.craftengine.core.item.Item;
 import net.momirealms.craftengine.core.item.ItemBuildContext;
 import net.momirealms.craftengine.core.item.ItemDefinition;
@@ -29,10 +29,12 @@ public final class GetArgumentsProcessor implements SimpleNetworkItemProcessor {
     }
 
     @Override
-    public Item prepareNetworkItem(Item item, ItemBuildContext context, CompoundTag networkData) {
+    public void apply(ItemBuildContext context) {
+        Item item = context.item();
+        if (item == null) return;
         RandomNumberContext randomNumberContext = RandomNumberContext.of(context.player(), item);
         if (this.attribute) {
-            List<AttributeModifier> attributeModifiers = new ObjectArrayList<>();
+            List<VanillaAttributeModifier> attributeModifiers = new ObjectArrayList<>();
             ItemDefinition itemDefinition = item.getDefinition().orElse(null);
             if (itemDefinition != null) {
                 List<AttributesSetting.AttributeData> attributeDataList = itemDefinition.settings().getCustomData(AttributesSetting.ATTRIBUTES);
@@ -52,12 +54,6 @@ public final class GetArgumentsProcessor implements SimpleNetworkItemProcessor {
             }
             item.attributeModifiers(attributeModifiers);
         }
-        return item;
-    }
-
-    @Override
-    public Item apply(Item item, ItemBuildContext context) {
-        return item;
     }
 
     public static class Factory implements ItemProcessorFactory<GetArgumentsProcessor> {

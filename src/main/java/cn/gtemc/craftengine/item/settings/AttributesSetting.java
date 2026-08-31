@@ -1,6 +1,6 @@
 package cn.gtemc.craftengine.item.settings;
 
-import net.momirealms.craftengine.core.attribute.AttributeModifier;
+import net.momirealms.craftengine.core.attribute.vanilla.VanillaAttributeModifier;
 import net.momirealms.craftengine.core.item.processor.AttributeModifiersProcessor;
 import net.momirealms.craftengine.core.item.setting.CustomItemSettingType;
 import net.momirealms.craftengine.core.item.setting.ItemSettings;
@@ -44,15 +44,15 @@ public final class AttributesSetting implements ItemSettingsModifier {
             List<AttributeData> attributeData = value.getAsList(it -> {
                 ConfigSection section = it.getAsSection();
                 Key type = AttributeModifiersProcessor.getNativeAttributeName(section.getNonNullIdentifier("type"));
-                AttributeModifier.Slot slot = section.getNonNullEnum("slot", AttributeModifier.Slot.class);
+                VanillaAttributeModifier.Slot slot = section.getNonNullEnum("slot", VanillaAttributeModifier.Slot.class);
                 Key id = section.getNonNullIdentifier("id");
                 NumberProvider amount = section.getNonNullNumber("amount");
-                AttributeModifier.Operation operation = section.getNonNullEnum("operation", AttributeModifier.Operation.class);
+                VanillaAttributeModifier.Operation operation = section.getNonNullEnum("operation", VanillaAttributeModifier.Operation.class);
                 AttributeModifiersProcessor.PreModifier.PreDisplay display = null;
                 if (VersionHelper.isOrAbove1_21_6 && section.containsKey("display")) {
                     ConfigSection displayConfig = section.getNonNullSection("display");
-                    AttributeModifier.Display.Type displayType = displayConfig.getNonNullEnum("type", AttributeModifier.Display.Type.class);
-                    if (displayType == AttributeModifier.Display.Type.OVERRIDE) {
+                    VanillaAttributeModifier.Display.Type displayType = displayConfig.getNonNullEnum("type", VanillaAttributeModifier.Display.Type.class);
+                    if (displayType == VanillaAttributeModifier.Display.Type.OVERRIDE) {
                         String miniMessageValue = displayConfig.getNonEmptyString("value");
                         display = new AttributeModifiersProcessor.PreModifier.PreDisplay(displayType, miniMessageValue);
                     } else {
