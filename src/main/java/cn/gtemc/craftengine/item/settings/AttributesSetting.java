@@ -11,6 +11,7 @@ import net.momirealms.craftengine.core.plugin.config.ConfigValue;
 import net.momirealms.craftengine.core.plugin.context.CommonConditions;
 import net.momirealms.craftengine.core.plugin.context.Context;
 import net.momirealms.craftengine.core.plugin.context.number.NumberProvider;
+import net.momirealms.craftengine.core.plugin.text.minimessage.FormattedLine;
 import net.momirealms.craftengine.core.util.Key;
 import net.momirealms.craftengine.core.util.MiscUtils;
 import net.momirealms.craftengine.core.util.VersionHelper;
@@ -54,7 +55,7 @@ public final class AttributesSetting implements ItemSettingsModifier {
                     VanillaAttributeModifier.Display.Type displayType = displayConfig.getNonNullEnum("type", VanillaAttributeModifier.Display.Type.class);
                     if (displayType == VanillaAttributeModifier.Display.Type.OVERRIDE) {
                         String miniMessageValue = displayConfig.getNonEmptyString("value");
-                        display = new AttributeModifiersProcessor.PreModifier.PreDisplay(displayType, miniMessageValue);
+                        display = new AttributeModifiersProcessor.PreModifier.PreDisplay(displayType, FormattedLine.create(miniMessageValue));
                     } else {
                         display = new AttributeModifiersProcessor.PreModifier.PreDisplay(displayType, null);
                     }
