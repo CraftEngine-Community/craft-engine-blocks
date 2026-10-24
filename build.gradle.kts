@@ -22,7 +22,7 @@ dependencies {
     compileOnly("io.papermc.paper:paper-api:${rootProject.findProperty("paper_version")}-R0.1-SNAPSHOT")
     compileOnly("net.momirealms:craft-engine-core:${rootProject.findProperty("craftengine_version")}")
     compileOnly("net.momirealms:craft-engine-bukkit:${rootProject.findProperty("craftengine_version")}")
-    compileOnly("net.momirealms:craft-engine-bukkit-proxy:${rootProject.findProperty("craftengine_version")}")
+    compileOnly("net.momirealms:craft-engine-bukkit-proxy:${rootProject.findProperty("craftengine_bukkit_proxy_version")}")
     compileOnly("net.momirealms:craft-engine-nms-helper:${rootProject.findProperty("nms_helper_version")}")
     compileOnly("it.unimi.dsi:fastutil:${rootProject.findProperty("fastutil_version")}")
     compileOnly("com.google.code.gson:gson:${rootProject.findProperty("gson_version")}")
